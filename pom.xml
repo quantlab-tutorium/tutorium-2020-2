@@ -29,24 +29,24 @@
 			</resource>
 		</resources>
 		<plugins>
-			<plugin>
-			    <groupId>org.codehaus.mojo</groupId>
-			    <artifactId>build-helper-maven-plugin</artifactId>
-			    <version>3.1.0</version>
-			    <executions>
-			        <execution>
-			            <phase>generate-sources</phase>
-			            <goals>
-			                <goal>add-source</goal>
-			            </goals>
-			            <configuration>
-			                <sources>
-			                    <source>${src.solution.java.dir}</source>
-			                </sources>
-			            </configuration>
-			        </execution>
-			    </executions>
-			</plugin>
+<!-- 			<plugin> -->
+<!-- 			    <groupId>org.codehaus.mojo</groupId> -->
+<!-- 			    <artifactId>build-helper-maven-plugin</artifactId> -->
+<!-- 			    <version>3.1.0</version> -->
+<!-- 			    <executions> -->
+<!-- 			        <execution> -->
+<!-- 			            <phase>generate-sources</phase> -->
+<!-- 			            <goals> -->
+<!-- 			                <goal>add-source</goal> -->
+<!-- 			            </goals> -->
+<!-- 			            <configuration> -->
+<!-- 			                <sources> -->
+<!-- 			                    <source>${src.solution.java.dir}</source> -->
+<!-- 			                </sources> -->
+<!-- 			            </configuration> -->
+<!-- 			        </execution> -->
+<!-- 			    </executions> -->
+<!-- 			</plugin> -->
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.0</version>
@@ -60,6 +60,10 @@
 				<version>3.0.0</version>
 				<configuration>
 					<configLocation>finmath-checkstyle.xml</configLocation>
+<!-- 					<sourceDirectories> -->
+<!-- 						<sourceDirectory>src/main/java</sourceDirectory> -->
+<!-- 						<sourceDirectory>src/solution/java</sourceDirectory> -->
+<!-- 					</sourceDirectories> -->
 				</configuration>
 			</plugin>
 		</plugins>
@@ -76,11 +80,11 @@
  		    <version>${junit.version}</version>
 		</dependency>
 <!-- 		<dependency> -->
-<!-- 			<groupId>tutorium-2020-collection</groupId> -->
-<!--   			<artifactId>tutorium-2020-collection</artifactId> -->
+<!-- 			<groupIdlmu.quantlab</groupId> -->
+<!--   			<artifactId>tutorium-2020-2-collection</artifactId> -->
 <!-- 			<version>0.0.1-SNAPSHOT</version> -->
 <!-- 			<scope>system</scope> -->
-<!-- 			<systemPath>${project.basedir}/lib/tutorium-2020-collection.jar</systemPath> -->
+<!-- 			<systemPath>${project.basedir}/lib/tutorium-2020-2-collection.jar</systemPath> -->
 <!-- 		</dependency> -->
 	</dependencies>
 </project>
