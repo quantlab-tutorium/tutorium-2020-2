@@ -1,8 +1,22 @@
 # QuantLab tools and technology tutorium.
 
 This project contains exercises to be worked on during the quantlab tutorium. They are checked
-by running the tests in src/test/main. While you are working on the exercises, you can of course
+by running the tests in src/test/main (if available). While you are working on the exercises, you can of course
 include a main method.
+
+
+
+## 11/16 Value - Dependency injection and generics
+
+(**Note**) Changes to the pom may require an update to your project configuration. Right-click the project in the explorer > Maven > Update Project.
+
+We are looking at the AAD code from the lecture and consider the abstraction via the interfaces Value and ValueDifferentiable. 
+
+The exercise consists of two parts.
+ * First, modify the code to fully implement the dependency injection pattern.
+ * Further create a ValueDifferentiable implementation that works for arbitrary Value using generics. 
+
+As a **bonus**: Can you convert DifferentiationExperimentHypothenuse into a parametrized test that tests the auto differentiated value against the analytic solution? 
 
 
 ## 11/09 Review

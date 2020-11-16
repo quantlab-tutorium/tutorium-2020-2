@@ -29,24 +29,24 @@
 			</resource>
 		</resources>
 		<plugins>
-<!-- 			<plugin> -->
-<!-- 			    <groupId>org.codehaus.mojo</groupId> -->
-<!-- 			    <artifactId>build-helper-maven-plugin</artifactId> -->
-<!-- 			    <version>3.1.0</version> -->
-<!-- 			    <executions> -->
-<!-- 			        <execution> -->
-<!-- 			            <phase>generate-sources</phase> -->
-<!-- 			            <goals> -->
-<!-- 			                <goal>add-source</goal> -->
-<!-- 			            </goals> -->
-<!-- 			            <configuration> -->
-<!-- 			                <sources> -->
-<!-- 			                    <source>${src.solution.java.dir}</source> -->
-<!-- 			                </sources> -->
-<!-- 			            </configuration> -->
-<!-- 			        </execution> -->
-<!-- 			    </executions> -->
-<!-- 			</plugin> -->
+			<plugin>
+			    <groupId>org.codehaus.mojo</groupId>
+			    <artifactId>build-helper-maven-plugin</artifactId>
+			    <version>3.1.0</version>
+			    <executions>
+			        <execution>
+			            <phase>generate-sources</phase>
+			            <goals>
+			                <goal>add-source</goal>
+			            </goals>
+			            <configuration>
+			                <sources>
+			                    <source>${src.solution.java.dir}</source>
+			                </sources>
+			            </configuration>
+			        </execution>
+			    </executions>
+			</plugin>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.0</version>
@@ -60,10 +60,10 @@
 				<version>3.0.0</version>
 				<configuration>
 					<configLocation>finmath-checkstyle.xml</configLocation>
-<!-- 					<sourceDirectories> -->
-<!-- 						<sourceDirectory>src/main/java</sourceDirectory> -->
-<!-- 						<sourceDirectory>src/solution/java</sourceDirectory> -->
-<!-- 					</sourceDirectories> -->
+					<sourceDirectories>
+						<sourceDirectory>src/main/java</sourceDirectory>
+						<sourceDirectory>src/solution/java</sourceDirectory>
+					</sourceDirectories>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -78,6 +78,13 @@
 		    <groupId>org.junit.jupiter</groupId>
 		    <artifactId>junit-jupiter-engine</artifactId>
  		    <version>${junit.version}</version>
+    		<scope>test</scope>
+		</dependency>
+		<dependency>
+    		<groupId>org.junit.jupiter</groupId>
+    		<artifactId>junit-jupiter-params</artifactId>
+ 		    <version>${junit.version}</version>
+    		<scope>test</scope>
 		</dependency>
 <!-- 		<dependency> -->
 <!-- 			<groupIdlmu.quantlab</groupId> -->
