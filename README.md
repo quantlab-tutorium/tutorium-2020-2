@@ -6,6 +6,18 @@ include a main method.
 
 
 
+## 11/23 Car - Build your own objects
+
+Today we have a more free-style coding session. Please have a look at the interface Car and it's nested interfaces. (Nested interfaces for demonstration, is this a good idea in an actual application?) These are given to you by a client, who wants to buy a Car (i.e. the client wants to execute the main in the class CarShop).
+
+**1)** Please provide at least two implementations of Car, which the shop can sell. For this:
+ * You are given a clean slate. Create your package structure and all classes yourself.
+ * Try to keep your code clean, choose reasonable levels of abstraction to avoid code duplication and keep your code open to extension.
+ * Write unit tests to check your product is functioning correctly.
+
+**2)** Once you are done with 1), you are not satisfied with just building cars. You want to know which one is best, in the sense of getting to a far away point fast. For this please complete the class CarTest, which is blank with the exception of a list of locations. The idea is that you want to get from the first point on the list to the last as quickly as possible, you don't need to visit all points in between. However, the car is only allowed to refuel at the given points. That means, a quicker car moves faster, but may need to take a more indirect route than a slower car with higher range. (The given locations were made with ranges of around 500 on a full tank.)
+
+
 ## 11/16 Value - Dependency injection and generics
 
 (**Note**) Changes to the pom may require an update to your project configuration. Right-click the project in the explorer > Maven > Update Project.
