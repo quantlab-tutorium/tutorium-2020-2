@@ -8,9 +8,10 @@ package quantlab.tutorium.solution2.aadexperiments;
  *
  * @author Roland Bachl
  *
+ * @param <V> The type of value that is being created by this factory.
  */
-public interface ValueFactory {
+public interface ValueFactory<V extends Value> {
 
-	Value getValue(double x);
+	V getValue(double x);
 
 }

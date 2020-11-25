@@ -35,9 +35,22 @@
 			    <version>3.1.0</version>
 			    <executions>
 			        <execution>
+			            <id>add-solution-source</id>
 			            <phase>generate-sources</phase>
 			            <goals>
 			                <goal>add-source</goal>
+			            </goals>
+			            <configuration>
+			                <sources>
+			                    <source>${src.solution.java.dir}</source>
+			                </sources>
+			            </configuration>
+			        </execution>
+			        <execution>
+			            <id>add-solution-test-source</id>
+			            <phase>generate-test-sources</phase>
+			            <goals>
+			                <goal>add-test-source</goal>
 			            </goals>
 			            <configuration>
 			                <sources>

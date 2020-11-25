@@ -11,7 +11,7 @@ import quantlab.tutorium.solution2.aadexperiments.ValueFactory;
  * @author Roland Bachl
  *
  */
-public class ValueDoubleDifferentiableFactory implements ValueFactory {
+public class ValueDoubleDifferentiableFactory implements ValueFactory<ValueDoubleDifferentiable> {
 
 	@Override
 	public ValueDoubleDifferentiable getValue(double x) {

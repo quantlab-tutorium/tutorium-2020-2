@@ -85,8 +85,8 @@ public class MyValue implements Value, ConvertableToFloatingPoint {
 		return "" + value;
 	}
 
-	public static ValueFactory getFactory() {
-		return new ValueFactory() {
+	public static ValueFactory<MyValue> getFactory() {
+		return new ValueFactory<MyValue>() {
 
 			@Override
 			public MyValue getValue(double x) {

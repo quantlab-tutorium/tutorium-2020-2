@@ -17,20 +17,20 @@ public class DiffernetiationExperimentHypothenuse {
 		runExperiment(new ValueDoubleDifferentiableFactory());
 	}
 
-	public static void runExperiment(ValueFactory factory) {
+	public static <V extends Value> void runExperiment(ValueFactory<V> factory) {
 
 		/*
 		 * Note: The behavior of the program will change, depending on which implementation is used for Value. Use
 		 * either ValueDouble or ValueDoubleDifferentiable.
 		 */
-		Value a = factory.getValue(7.0);
-		Value b = factory.getValue(24.0);
-		Value epsilon = factory.getValue(1E-5);
+		V a = factory.getValue(7.0);
+		V b = factory.getValue(24.0);
+		V epsilon = factory.getValue(1E-5);
 
 		runExperiment(a, b, epsilon);
 	}
 
-	public static void runExperiment(Value a, Value b, Value epsilon) {
+	public static <V extends Value> void runExperiment(V a, V b, V epsilon) {
 
 		System.out.println("Results for a = " + a + " and b = " + b);
 		System.out.println();

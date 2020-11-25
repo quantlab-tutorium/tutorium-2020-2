@@ -22,8 +22,9 @@ import quantlab.tutorium.solution2.aadexperiments.ValueFactory;
  *
  * @author Roland Bachl
  *
+ * @param <V> The type of the underlying {@link Value}.
  */
-public class ValueDifferentiableGeneric implements ValueDifferentiable, ConvertableToFloatingPoint {
+public class ValueDifferentiableGeneric<V extends Value> implements ValueDifferentiable, ConvertableToFloatingPoint {
 
 	public static void main(String[] args) {
 
@@ -36,9 +37,9 @@ public class ValueDifferentiableGeneric implements ValueDifferentiable, Converta
 
 	private static AtomicLong nextId = new AtomicLong();
 
-	private Value value;
+	private V value;
 	private Operator operator;
-	private List<ValueDifferentiableGeneric> arguments;
+	private List<ValueDifferentiableGeneric<V>> arguments;
 	private Long id;
 
 	/**
@@ -48,7 +49,7 @@ public class ValueDifferentiableGeneric implements ValueDifferentiable, Converta
 	 * @param operator Operator that lead to this value.
 	 * @param arguments Arguments that were used in this operation.
 	 */
-	private ValueDifferentiableGeneric(Value value, Operator operator, List<ValueDifferentiableGeneric> arguments) {
+	private ValueDifferentiableGeneric(V value, Operator operator, List<ValueDifferentiableGeneric<V>> arguments) {
 		super();
 		this.value = value;
 		this.operator = operator;
@@ -61,16 +62,17 @@ public class ValueDifferentiableGeneric implements ValueDifferentiable, Converta
 	 *
 	 * @param value Value of this node.
 	 */
-	public ValueDifferentiableGeneric(Value value) {
+	public ValueDifferentiableGeneric(V value) {
 		this(value, null, null);
 	}
 
-	public static <V extends Value> ValueFactory getFactory(ValueFactory baseFactory) {
-		return new ValueFactory() {
+	public static <V extends Value> ValueFactory<ValueDifferentiableGeneric<V>> getFactory(
+			ValueFactory<V> baseFactory) {
+		return new ValueFactory<ValueDifferentiableGeneric<V>>() {
 
 			@Override
-			public ValueDifferentiableGeneric getValue(double x) {
-				return new ValueDifferentiableGeneric(baseFactory.getValue(x));
+			public ValueDifferentiableGeneric<V> getValue(double x) {
+				return new ValueDifferentiableGeneric<V>(baseFactory.getValue(x));
 			}
 		};
 	}
@@ -79,38 +81,40 @@ public class ValueDifferentiableGeneric implements ValueDifferentiable, Converta
 	 * The operations, implementing the interface.
 	 */
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Value squared() {
-		return new ValueDifferentiableGeneric(value.squared(), Operator.SQUARED, List.of(this));
+		return new ValueDifferentiableGeneric<V>((V) value.squared(), Operator.SQUARED, List.of(this));
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Value sqrt() {
-		return new ValueDifferentiableGeneric(value.sqrt(), Operator.SQRT, List.of(this));
+		return new ValueDifferentiableGeneric<V>((V) value.sqrt(), Operator.SQRT, List.of(this));
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Value add(Value x) {
-		return new ValueDifferentiableGeneric(value.add(x), Operator.ADD,
-				List.of(this, (ValueDifferentiableGeneric) x));
+		return new ValueDifferentiableGeneric<V>((V) value.add(x), Operator.ADD, List.of(this, (ValueDifferentiableGeneric<V>)x));
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Value sub(Value x) {
-		return new ValueDifferentiableGeneric(value.sub(x), Operator.SUB,
-				List.of(this, (ValueDifferentiableGeneric) x));
+		return new ValueDifferentiableGeneric<V>((V) value.sub(x), Operator.SUB, List.of(this, (ValueDifferentiableGeneric<V>)x));
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Value mult(Value x) {
-		return new ValueDifferentiableGeneric(value.mult(x), Operator.MULT,
-				List.of(this, (ValueDifferentiableGeneric) x));
+		return new ValueDifferentiableGeneric<V>((V) value.mult(x), Operator.MULT, List.of(this, (ValueDifferentiableGeneric<V>)x));
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Value div(Value x) {
-		return new ValueDifferentiableGeneric(value.div(x), Operator.DIV,
-				List.of(this, (ValueDifferentiableGeneric) x));
+		return new ValueDifferentiableGeneric<V>((V) value.div(x), Operator.DIV, List.of(this, (ValueDifferentiableGeneric<V>)x));
 	}
 
 	@Override
@@ -140,7 +144,7 @@ public class ValueDifferentiableGeneric implements ValueDifferentiable, Converta
 		derivativesWithRespectTo.put(this, 1.0);
 
 		// This creates a set (queue) of objects, sorted ascending by their getID() value (last = highest ID)
-		TreeSet<ValueDifferentiableGeneric> nodesToProcess = new TreeSet<>(
+		TreeSet<ValueDifferentiableGeneric<V>> nodesToProcess = new TreeSet<>(
 				(o1, o2) -> o1.getID().compareTo(o2.getID()));
 
 		// Add the root note
@@ -150,9 +154,9 @@ public class ValueDifferentiableGeneric implements ValueDifferentiable, Converta
 		while(!nodesToProcess.isEmpty()) {
 
 			// Get and remove the top most node.
-			ValueDifferentiableGeneric currentNode = nodesToProcess.pollLast();
+			ValueDifferentiableGeneric<V> currentNode = nodesToProcess.pollLast();
 
-			List<ValueDifferentiableGeneric> currentNodeArguments = currentNode.getArguments();
+			List<ValueDifferentiableGeneric<V>> currentNodeArguments = currentNode.getArguments();
 			if(currentNodeArguments != null) {
 				// Update the derivative as Di = Di + Dm * dxm / dxi (where Dm = dy/xm).
 				propagateDerivativeToArguments(derivativesWithRespectTo, currentNode, currentNodeArguments);
@@ -172,7 +176,7 @@ public class ValueDifferentiableGeneric implements ValueDifferentiable, Converta
 	 * @param arguments The (list of) arguments of the current node (the i's).
 	 */
 	private void propagateDerivativeToArguments(Map<ValueDifferentiable, Double> derivatives,
-			ValueDifferentiableGeneric node, List<ValueDifferentiableGeneric> arguments) {
+			ValueDifferentiableGeneric<V> node, List<ValueDifferentiableGeneric<V>> arguments) {
 
 		switch(node.getOperator()) {
 		case ADD:
@@ -210,7 +214,7 @@ public class ValueDifferentiableGeneric implements ValueDifferentiable, Converta
 		return operator;
 	}
 
-	public List<ValueDifferentiableGeneric> getArguments() {
+	public List<ValueDifferentiableGeneric<V>> getArguments() {
 		return arguments;
 	}
 
