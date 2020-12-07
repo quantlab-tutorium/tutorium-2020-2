@@ -5,6 +5,11 @@ by running the tests in src/test/main (if available). While you are working on t
 include a main method.
 
 
+## 12/7 Lambda and Functional Interfaces
+
+After a review of functional interfaces and lambda expressions in Java, today's tutorium is about Ex2 on Handout 5.
+
+
 ## 11/30 First assignment
 
 Today we review git, github and github classroom. As well as how to accept and submit the graded assignments of the course.
