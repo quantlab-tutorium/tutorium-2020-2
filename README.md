@@ -5,6 +5,11 @@ by running the tests in src/test/main (if available). While you are working on t
 include a main method.
 
 
+##12/14 Caplet and Quanto
+
+We build a caplet, first in our domestic market, then in a foreign market.
+
+
 ## 12/7 Lambda and Functional Interfaces
 
 After a review of functional interfaces and lambda expressions in Java, today's tutorium is about Ex2 on Handout 5.
