@@ -5,6 +5,11 @@ by running the tests in src/test/main (if available). While you are working on t
 include a main method.
 
 
+##12/21 Swaption and Convexity Adjustment
+
+A simple implementation of swaption pricing, followed by a look at convexity adjustment.
+
+
 ##12/14 Caplet and Quanto
 
 We build a caplet, first in our domestic market, then in a foreign market.
