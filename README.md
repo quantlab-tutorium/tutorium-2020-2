@@ -5,6 +5,11 @@ by running the tests in src/test/main (if available). While you are working on t
 include a main method.
 
 
+##01/11 Options on Libor in arrears
+
+The exercise for today makes use of class hierarchy to streamline the creation of options in arrears.
+
+
 ##12/21 Swaption and Convexity Adjustment
 
 A simple implementation of swaption pricing, followed by a look at convexity adjustment.
